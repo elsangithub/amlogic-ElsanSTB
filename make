@@ -564,6 +564,12 @@ EOF
         sed -i "/exit/i\/usr/sbin/balethirq.pl" etc/rc.local >/dev/null 2>&1
         cp -f ${balethirq_file}/balance_irq etc/balance_irq >/dev/null 2>&1
     fi
+    # passwd
+    passwd_file="${configfiles_path}/rootfs/passwd"
+    if [[ -d "${passwd_file}" ]]; then
+        cp -f ${passwd_file}/passwd etc/passwd && chmod +x etc/passwd >/dev/null 2>&1
+    fi
+    
 
     # Add firmware information
     echo "PLATFORM='amlogic'" >>${op_release} 2>/dev/null
